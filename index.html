@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio of Kaka Prince Chiemezuo - Frontend Developer, AI Engineer, and Real Estate Consultant. Explore projects, skills, and a dedicated real estate properties section.">
+    <meta name="keywords"
+        content="Frontend Developer, AI Engineer, Web Development, Machine Learning, Portfolio, Real Estate, Embedded Properties, Single Page Application">
+    <title>Kaka Prince Chiemezuo | Developer & Real Estate</title>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .section {
+            /* Standard padding for all sections */
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        #home.section {
+            /* Home section might have more top padding due to navbar clearance */
+            padding-top: 6rem;
+            /* Corresponds to pt-24 (assuming 1rem = 16px, 96px), adjust as needed */
+        }
+
+        /* Sections that are part of the main scrolling content */
+        .main-content-section {
+            display: block;
+            /* Visible by default */
+        }
+
+        /* The real estate section is special and hidden by default */
+        #real-estate {
+            display: none;
+            padding-top: 1.5rem;
+            /* Less top padding as it takes over view, just enough for title from nav */
+        }
+
+
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: calc(100% - 10px);
+            width: 2px;
+            background-color: #3b82f6;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .btn-download:hover .download-icon {
+            transform: translateY(3px);
+        }
+
+        .download-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .scrollbar-thin {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-dark) #0f172a;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background-color: var(--primary-dark);
+            border-radius: 10px;
+            border: 2px solid #0f172a;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="fixed w-full bg-slate-900/80 backdrop-blur-md z-50 shadow-lg h-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold gradient-text">Smart Prince</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#home"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#about"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">About Me</a>
+                        <a href="#skills"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">My Skills</a>
+                        <a href="#projects"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">My Projects</a>
+                        <a href="#education"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Education</a>
+                        <a href="#experience"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Experience</a>
+                        <a href="#real-estate" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Real estate
+                            properties</a>
+                        <a href="#contact"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 backdrop-blur-md">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Home</a>
+                <a href="#about"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">About</a>
+                <a href="#skills"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Skills</a>
+                <a href="#projects"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Projects</a>
+                <a href="#education"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Education</a>
+                <a href="#experience"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Experience</a>
+                <a href="#real-estate" class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Real
+                    estate properties</a>
+                <a href="#contact"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="standard-content-wrapper">
+        <section id="home"
+            class="main-content-section section min-h-screen flex items-center bg-gradient-to-br from-slate-900 to-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">Kaka Prince <span
+                                class="gradient-text">Chiemezuo</span></h1>
+                        <h2 class="text-xl md:text-2xl text-blue-400 mb-6">Frontend Developer | AI Engineer | Real
+                            Estate Consultant</h2>
+                        <p class="text-lg text-gray-300 mb-8 max-w-lg">"Building user-centric web applications and
+                            intelligent AI solutions"</p>
+                        <div class="flex items-center justify-center md:justify-start space-x-4 mb-8">
+                            <span class="text-gray-400"><i class="fas fa-map-marker-alt mr-1"></i> Nigeria</span>
+                        </div>
+                        <div class="flex justify-center md:justify-start space-x-4 mb-8">
+                            <a href="tel:+23408160952082" class="text-gray-300 hover:text-blue-400 transition-colors"><i
+                                    class="fas fa-phone text-xl"></i></a>
+                            <a href="mailto:smartprincenet@gmail.com"
+                                class="text-gray-300 hover:text-blue-400 transition-colors"><i
+                                    class="fas fa-envelope text-xl"></i></a>
+                            <a href="https://github.com/kakaprince46" target="_blank"
+                                class="text-gray-300 hover:text-blue-400 transition-colors"><i
+                                    class="fab fa-github text-xl"></i></a>
+                            <a href="https://huggingface.co/kakaprince46" target="_blank"
+                                class="text-gray-300 hover:text-blue-400 transition-colors"><i
+                                    class="fas fa-robot text-xl"></i></a>
+                            <a href="https://www.smartprince.site" target="_blank"
+                                class="text-gray-300 hover:text-blue-400 transition-colors"><i
+                                    class="fas fa-globe text-xl"></i></a>
+                        </div>
+                        <div
+                            class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+                            <a href="#contact" id="hero-contact-button"
+                                class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-lg">Contact
+                                Me</a>
+                            <button
+                                class="btn-download px-6 py-3 bg-transparent border border-blue-600 text-blue-400 hover:bg-blue-600/10 font-medium rounded-lg transition-colors shadow-lg flex items-center justify-center">
+                                <span class="mr-2">Download CV</span><i class="fas fa-download download-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex justify-center">
+                        <div class="relative w-64 h-64 lg:w-80 lg:h-80">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-full opacity-20 blur-xl">
+                            </div>
+                            <div class="relative w-full h-full flex items-center justify-center">
+                                <div
+                                    class="w-56 h-56 lg:w-72 lg:h-72 bg-slate-800 rounded-full flex items-center justify-center overflow-hidden border-4 border-blue-500/30 floating">
+                                    <div class="w-full h-full bg-slate-700 flex items-center justify-center">
+                                        <img src="images/profile2.jpg" alt="Kaka Prince Chiemezuo"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="main-content-section section bg-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <h2 class="text-3xl font-bold mb-12 text-center gradient-text">About Me</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    <div class="md:col-span-1 flex justify-center">
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-500/30">
+                            <div class="w-full h-full bg-slate-700 flex items-center justify-center"><img
+                                    src="images/profile.jpg" alt="Kaka Prince Chiemezuo"
+                                    class="w-full h-full object-cover"></div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <p class="text-lg text-gray-300 mb-6">I am a dedicated Frontend Developer and AI Engineer, and
+                            Real Estate Consultant with a unique blend of technical expertise and real-world experience
+                            in building responsive web applications, intelligent automation tools, and machine learning
+                            solutions. With a background in digital innovation, I focus on developing intuitive user
+                            interfaces while integrating AI to create impactful, data-driven experiences.</p>
+                        <p class="text-lg text-gray-300 mb-6">My strength lies in turning complex ideas into accessible,
+                            user-friendly platforms, balancing creativity, performance, and clean code. Whether it’s
+                            designing property tech solutions, building client-side AI apps, or deploying automation
+                            tools for SMEs, I bring a problem-solving mindset and a passion for continuous learning to
+                            every project.</p>
+                        <p class="text-lg text-gray-300">Beyond development, I actively explore emerging technologies in
+                            AI, share knowledge through community projects, and empower young talents through mentoring
+                            and digital skill-building initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="main-content-section section bg-slate-900 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <h2 class="text-3xl font-bold mb-12 text-center gradient-text">My Skills</h2>
+                <button id="scrollLeft"
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-white p-2 rounded-full z-10 shadow-lg hidden sm:block"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button id="scrollRight"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-white p-2 rounded-full z-10 shadow-lg hidden sm:block"><i
+                        class="fas fa-chevron-right"></i></button>
+                <div id="skillsScroll"
+                    class="flex space-x-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-700 scroll-smooth">
+                    <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-400 flex items-center"><i
+                                class="fas fa-laptop-code mr-2"></i> Frontend Development</h3>
+                        <div class="flex flex-wrap gap-2"><span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">HTML5</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">CSS3</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">JavaScript</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">React</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Vue.js</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Tailwind
+                                CSS</span> <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">SASS</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Responsive
+                                Design</span></div>
+                    </div>
+                    <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-emerald-400 flex items-center"><i
+                                class="fas fa-brain mr-2"></i> AI/ML Engineering</h3>
+                        <div class="flex flex-wrap gap-2"><span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">Python</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">TensorFlow</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">PyTorch</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">NLP</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">Computer
+                                Vision</span> <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">Scikit-learn</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">Pandas</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-sm">NumPy</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-pink-400 flex items-center"><i
+                                class="fas fa-building mr-2"></i> Real Estate</h3>
+                        <div class="flex flex-wrap gap-2"><span
+                                class="skill-badge px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">Property
+                                Listing</span> <span
+                                class="skill-badge px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">Client
+                                Onboarding</span> <span
+                                class="skill-badge px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">Market
+                                Research</span> <span
+                                class="skill-badge px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">Sales
+                                Negotiation</span> <span
+                                class="skill-badge px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">Land
+                                Documentation</span> <span
+                                class="skill-badge px-3 py-1 bg-pink-900/50 text-pink-300 rounded-full text-sm">Property
+                                Management</span></div>
+                    </div>
+                    <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-400 flex items-center"><i
+                                class="fas fa-tools mr-2"></i> Tools & Platforms</h3>
+                        <div class="flex flex-wrap gap-2"><span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Git</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Docker</span>
+                            <span class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">VS
+                                Code</span> <span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Render</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">AWS</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Firebase</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Figma</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-purple-900/50 text-purple-300 rounded-full text-sm">Postman</span>
+                        </div>
+                    </div>
+                    <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-400 flex items-center"><i
+                                class="fas fa-users mr-2"></i> Soft Skills</h3>
+                        <div class="flex flex-wrap gap-2"><span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Problem
+                                Solving</span> <span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Teamwork</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Communication</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Leadership</span>
+                            <span class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Time
+                                Management</span> <span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Adaptability</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Creativity</span>
+                            <span
+                                class="skill-badge px-3 py-1 bg-amber-900/50 text-amber-300 rounded-full text-sm">Mentoring</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="main-content-section section bg-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Featured Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="project-card p-6 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold text-blue-400">Prompt-to-Song Generator</h3> <span
+                                class="px-2 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs">AI /
+                                Fullstack</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4"> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fab fa-react mr-1 text-blue-400"></i> React.js</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-brain mr-1 text-emerald-400"></i> TensorFlow.js</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-music mr-1 text-pink-400"></i> Web Audio API</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-cloud mr-1 text-blue-200"></i> Firebase Hosting</span> </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-300 mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Text-to-song generation from user prompts</li>
+                                <li>Genre/mood/BPM customization</li>
+                                <li>MP3 download and social sharing via URLs</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
+                            <p class="text-gray-400 text-sm">Optimized TensorFlow.js for browser performance; used
+                                localStorage for caching; avoided server-side storage for compliance.</p>
+                        </div> <a href="https://smartwavesong.web.app" target="_blank"
+                            class="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors">
+                            View Project <i class="fas fa-external-link-alt ml-1"></i> </a>
+                    </div>
+                    <div class="project-card p-6 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold text-emerald-400">AI Property Price Estimator</h3> <span
+                                class="px-2 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-xs">AI / Data
+                                Science</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4"> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fab fa-python mr-1 text-yellow-300"></i> Python</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-database mr-1 text-purple-400"></i> Pandas</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-robot mr-1 text-pink-400"></i> Scikit-learn</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-globe mr-1 text-green-300"></i> Streamlit / Flask</span> </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-300 mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Real-time predictions from property inputs</li>
+                                <li>CSV/Google Sheet dataset support</li>
+                                <li>Optional user query history via Firebase</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
+                            <p class="text-gray-400 text-sm">Trained and deployed regression models; used lightweight
+                                frameworks for non-technical users; added database support for saving searches.</p>
+                        </div> <a href="https://real-price1.web.app" target="_blank"
+                            class="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm transition-colors">
+                            View Project <i class="fas fa-external-link-alt ml-1"></i> </a>
+                    </div>
+                    <div class="project-card p-6 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold text-purple-400">Biometric Attendance System</h3> <span
+                                class="px-2 py-1 bg-purple-900/50 text-purple-300 rounded-full text-xs">Fullstack /
+                                Automation</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4"> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fab fa-react mr-1 text-blue-400"></i> React.js</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-qrcode mr-1 text-amber-400"></i> QRickit.io</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-database mr-1 text-blue-300"></i> Firebase</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-mobile-alt mr-1 text-pink-300"></i> PWA</span> </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-300 mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Dynamic QR code check-ins</li>
+                                <li>Offline-friendly PWA support</li>
+                                <li>Admin dashboard with filters/export</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
+                            <p class="text-gray-400 text-sm">Used dynamic QR URLs for event context; added service
+                                workers for offline use; ensured real-time database sync with Firebase.</p>
+                        </div> <a href="https://checkpointx-master.netlify.app/" target="_blank"
+                            class="inline-block px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm transition-colors">
+                            View Project <i class="fas fa-external-link-alt ml-1"></i> </a>
+                    </div>
+                    <div class="project-card p-6 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-semibold text-amber-400">NaijaLand – PropTech Platform</h3> <span
+                                class="px-2 py-1 bg-amber-900/50 text-amber-300 rounded-full text-xs">Fullstack</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4"> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fab fa-html5 mr-1 text-orange-400"></i> HTML</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-wind mr-1 text-blue-300"></i> Tailwind CSS</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fab fa-js mr-1 text-yellow-300"></i> JavaScript</span> <span
+                                class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i
+                                    class="fas fa-fire mr-1 text-red-400"></i> Firebase</span> </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-300 mb-2">Key Features:</h4>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Auth + dashboard with property tracking</li>
+                                <li>Property marketplace + Paystack integration</li>
+                                <li>Admin panel and full PWA support</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
+                            <p class="text-gray-400 text-sm">Handled secure property purchases via Firestore
+                                transactions; implemented modals, land calculator, and user-uploaded receipts; enabled
+                                offline capabilities with PWA.</p>
+                        </div> <a href="https://naijaland-ff376.web.app" target="_blank"
+                            class="inline-block px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                            View Project <i class="fas fa-external-link-alt ml-1"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="main-content-section section bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <h2 class="text-3xl font-bold mb-6 text-center gradient-text">🎓 Education & Certifications</h2>
+                <div
+                    class="relative max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-800">
+                    <div class="timeline-item mb-8 pl-8 relative">
+                        <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-300">
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                                <h3 class="text-xl font-semibold text-blue-400">B.A. Agriculture</h3> <span
+                                    class="text-sm text-gray-400">2023</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Nnamdi Azikiwe University, Awka, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-8 pl-8 relative">
+                        <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-amber-500 border-4 border-amber-300">
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <ul class="list-disc pl-5 text-gray-300 text-sm space-y-2">
+                                <li><strong>2015:</strong> Certificate of Participation by VM Technologies LTD</li>
+                                <li><strong>2017:</strong> Certificate of Dedication by Nigerian Federation of Catholic
+                                    Students</li>
+                                <li><strong>2018:</strong> Certificate in Strategies for Personal Growth by YALI Network
+                                </li>
+                                <li><strong>2018:</strong> Certificate in Fundamentals of Grant Writing by YALI Network
+                                </li>
+                                <li><strong>2018:</strong> Certificate in Agripreneurship by YALI Network</li>
+                                <li><strong>2018:</strong> Certificate in Responsible Leadership by YALI Network</li>
+                                <li><strong>2019:</strong> Certificate in Community Organizing for Action by YALI
+                                    Network</li>
+                                <li><strong>2020:</strong> Certificate in Personal Money Management by YALI Network</li>
+                                <li><strong>2020:</strong> Certificate of Service, Directorate of Entrepreneur by NAU
+                                    SUG</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="main-content-section section bg-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Experience & Leadership</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Chairman</h4> <span
+                                    class="text-sm text-gray-400">2015 – 2022</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">SASSO 2014 Students</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Provided visionary leadership and guidance.</li>
+                                <li>Fostered unity, academic excellence, and personal development.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Project Manager</h4> <span
+                                    class="text-sm text-gray-400">2017 – 2019</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">PACO Youth Foundation</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Oversaw empowerment programs and youth mentorship.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Secretary</h4> <span
+                                    class="text-sm text-gray-400">2019 – 2020</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Directorate of Entrepreneurship, SUG, UNIZIK</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Coordinated entrepreneurship programs and student skill acquisition.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Financial Secretary</h4> <span
+                                    class="text-sm text-gray-400">2013 – 2015</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Unizik Mata, Anambra State</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Managed budgeting for student media platform.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Chief Male DOS</h4> <span
+                                    class="text-sm text-gray-400">2016</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Nigerian Federation of Catholic Students (NFCS)</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Coordinated social and networking events.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Chairman, Harvest Committee</h4> <span
+                                    class="text-sm text-gray-400">2023</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">St. Benedict Parish Church, Obokwu</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Led fundraising and logistics for annual harvest event.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Data Entry & Research</h4> <span
+                                    class="text-sm text-gray-400">2024 – Present</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Apex Assets Limited</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Manages property data and market trend analysis.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="real-estate" class="section bg-slate-800/50" style="display: none;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+                <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Real Estate Properties</h2>
+                <div class="w-full h-[calc(100vh-10rem)] sm:h-[calc(100vh-8rem)] overflow-hidden rounded-lg shadow-xl">
+                    <iframe src="https://kakaprince46-propertylisting.static.hf.space/index.html" class="w-full h-full"
+                        style="border:none;" title="Real Estate Properties Listing" loading="lazy">
+                    </iframe>
+                </div>
+                <p class="text-center text-gray-400 mt-4 text-sm">
+                    Note: This is an embedded page. For the full experience or if you encounter any issues, please
+                    <a href="https://kakaprince46-propertylisting.static.hf.space/index.html" target="_blank"
+                        class="text-blue-400 hover:underline">
+                        visit the property site directly
+                    </a>.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="main-content-section section bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+                <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Let's Collaborate</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-400">Get In Touch</h3>
+                        <p class="text-gray-300 mb-8"> Have a project in mind or want to discuss potential
+                            opportunities? I'm always open to collaborations, whether it's building smart digital
+                            solutions, exploring AI innovations, developing web applications, or helping you secure
+                            genuine land investments. </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-blue-400"></i></div>
+                                <div>
+                                    <h4 class="text-gray-400 text-sm">Email</h4> <a
+                                        href="mailto:smartprincenet@gmail.com"
+                                        class="text-white hover:text-blue-400 transition-colors">smartprincenet@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-blue-400"></i></div>
+                                <div>
+                                    <h4 class="text-gray-400 text-sm">Phone</h4> <a href="tel:+2348160952082"
+                                        class="text-white hover:text-blue-400 transition-colors">+234 8160 952082</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-400"></i></div>
+                                <div>
+                                    <h4 class="text-gray-400 text-sm">Location</h4>
+                                    <p class="text-white">Nigeria</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="text-gray-300 mb-4">Connect with me:</h4>
+                            <div class="flex space-x-4"> <a href="https://github.com/kakaprince46" target="_blank"
+                                    class="w-10 h-10 rounded-full bg-slate-800 hover:bg-blue-600 flex items-center justify-center transition-colors"><i
+                                        class="fab fa-github text-white"></i></a> <a
+                                    href="https://twitter.com/kakaprince46" target="_blank"
+                                    class="w-10 h-10 rounded-full bg-slate-800 hover:bg-blue-400 flex items-center justify-center transition-colors"><i
+                                        class="fab fa-twitter text-white"></i></a> <a
+                                    href="https://www.linkedin.com/in/kakaprincec?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                    target="_blank"
+                                    class="w-10 h-10 rounded-full bg-slate-800 hover:bg-blue-700 flex items-center justify-center transition-colors"><i
+                                        class="fab fa-linkedin-in text-white"></i></a> <a
+                                    href="https://huggingface.co/kakaprince46" target="_blank"
+                                    class="w-10 h-10 rounded-full bg-slate-800 hover:bg-orange-500 flex items-center justify-center transition-colors"><i
+                                        class="fas fa-robot text-white"></i></a> </div>
+                        </div>
+                    </div>
+                    <div>
+                        <form id="contact-form-element" class="bg-slate-800 p-8 rounded-xl shadow-lg">
+                            <h3 class="text-xl font-semibold mb-6 text-white">Send Me a Message</h3>
+                            <div class="mb-4"> <label for="form-name"
+                                    class="block text-gray-300 text-sm mb-2">Name</label> <input type="text"
+                                    id="form-name" name="name" required
+                                    class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div class="mb-4"> <label for="form-email"
+                                    class="block text-gray-300 text-sm mb-2">Email</label> <input type="email"
+                                    id="form-email" name="email" required
+                                    class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div class="mb-4"> <label for="form-subject"
+                                    class="block text-gray-300 text-sm mb-2">Subject</label> <input type="text"
+                                    id="form-subject" name="subject"
+                                    class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div class="mb-6"> <label for="form-message"
+                                    class="block text-gray-300 text-sm mb-2">Message</label> <textarea id="form-message"
+                                    name="message" rows="4" required
+                                    class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"></textarea>
+                            </div> <button type="submit"
+                                class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-lg">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i> </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <footer class="bg-slate-950 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">&copy; <span id="currentYear"></span> Kaka Prince Chiemezuo. All rights
+                        reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/kakaprince46" target="_blank"
+                        class="text-gray-400 hover:text-blue-400 transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/kakaprince46" target="_blank"
+                        class="text-gray-400 hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/kakaprincec?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://huggingface.co/kakaprince46" target="_blank"
+                        class="text-gray-400 hover:text-blue-400 transition-colors"><i class="fas fa-robot"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            }
+
+            const mainContentSections = document.querySelectorAll('.main-content-section');
+            const realEstateSection = document.getElementById('real-estate');
+            const desktopNavLinks = document.querySelectorAll('nav .nav-link');
+            const mobileNavItems = document.querySelectorAll('#mobile-menu .mobile-nav-item');
+            const heroContactButton = document.getElementById('hero-contact-button');
+
+            const navbar = document.querySelector('nav');
+            const navbarHeight = navbar ? navbar.offsetHeight : 64; // Fallback if nav not found
+
+            function showView(targetId) { // targetId includes '#'
+                if (targetId === '#real-estate') {
+                    mainContentSections.forEach(s => s.style.display = 'none');
+                    if (realEstateSection) realEstateSection.style.display = 'block';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    mainContentSections.forEach(s => s.style.display = 'block');
+                    if (realEstateSection) realEstateSection.style.display = 'none';
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        let scrollToPosition = targetElement.offsetTop - navbarHeight;
+                        // Ensure positive scroll position
+                        scrollToPosition = Math.max(0, scrollToPosition);
+                        window.scrollTo({ top: scrollToPosition, behavior: 'smooth' });
+                    } else if (targetId === '#home') { // Failsafe for home
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+                updateActiveNavLinks(targetId);
+            }
+
+            function updateActiveNavLinks(activeSectionId) {
+                desktopNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === activeSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+                mobileNavItems.forEach(link => {
+                    link.classList.remove('text-white', 'bg-slate-700'); // Reset style
+                    link.classList.add('text-gray-300');
+                    if (link.getAttribute('href') === activeSectionId) {
+                        link.classList.remove('text-gray-300');
+                        link.classList.add('text-white', 'bg-slate-700'); // Active style
+                    }
+                });
+            }
+
+            function handleNavLinkClick(event) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    event.preventDefault();
+                    showView(targetId);
+                    if (history.pushState) {
+                        history.pushState({ path: targetId }, '', targetId);
+                    } else {
+                        window.location.hash = targetId;
+                    }
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            }
+
+            desktopNavLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
+            mobileNavItems.forEach(link => link.addEventListener('click', handleNavLinkClick));
+            if (heroContactButton) {
+                heroContactButton.addEventListener('click', handleNavLinkClick);
+            }
+
+
+            function initialLoad() {
+                let targetId = window.location.hash;
+                if (!targetId || !document.querySelector(targetId)) {
+                    targetId = '#home';
+                }
+                showView(targetId); // This will also call updateActiveNavLinks
+                // Ensure URL hash is correct if defaulted, without adding to history for initial load
+                if (window.location.hash !== targetId) {
+                    if (history.replaceState) {
+                        history.replaceState({ path: targetId }, '', targetId);
+                    } else {
+                        window.location.hash = targetId; // Fallback for older browsers
+                    }
+                }
+            }
+
+            window.addEventListener('popstate', function (event) {
+                let targetId = window.location.hash;
+                if (!targetId || !document.getElementById(targetId.substring(1))) {
+                    targetId = '#home';
+                }
+                showView(targetId);
+            });
+
+            initialLoad();
+
+            // Download CV
+            const downloadBtn = document.querySelector('.btn-download');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function () {
+                    alert('Preparing CV for download...');
+                    const link = document.createElement('a');
+                    link.href = 'kaka CV 29.5.2025.pdf';
+                    link.download = 'Kaka_Prince_Chiemezuo_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+
+            // Contact Form
+            const contactForm = document.getElementById('contact-form-element');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(contactForm);
+                    console.log('Form Data:', Object.fromEntries(formData));
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+
+            // Skills Scroll Buttons
+            const skillsScrollContainer = document.getElementById('skillsScroll');
+            const skillsScrollLeftBtn = document.getElementById('scrollLeft');
+            const skillsScrollRightBtn = document.getElementById('scrollRight');
+            if (skillsScrollContainer && skillsScrollLeftBtn && skillsScrollRightBtn) {
+                function toggleSkillScrollButtons() {
+                    const hasOverflow = skillsScrollContainer.scrollWidth > skillsScrollContainer.clientWidth;
+                    const isSmallScreen = window.innerWidth < 640;
+                    skillsScrollLeftBtn.classList.toggle('hidden', !hasOverflow || isSmallScreen);
+                    skillsScrollRightBtn.classList.toggle('hidden', !hasOverflow || isSmallScreen);
+                }
+                skillsScrollLeftBtn.addEventListener('click', () => skillsScrollContainer.scrollBy({ left: -320, behavior: 'smooth' }));
+                skillsScrollRightBtn.addEventListener('click', () => skillsScrollContainer.scrollBy({ left: 320, behavior: 'smooth' }));
+                toggleSkillScrollButtons();
+                window.addEventListener('resize', toggleSkillScrollButtons);
+                new MutationObserver(toggleSkillScrollButtons).observe(skillsScrollContainer, { childList: true, subtree: true, attributes: true });
+            }
+        });
+    </script>
+</body>
+
+</html>
