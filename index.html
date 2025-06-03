@@ -13,9 +13,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    </head>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,6 +54,7 @@
         }
 
         #home.section {
+            /* Corrected selector */
             /* Home section might have more top padding due to navbar clearance */
             padding-top: 6rem;
             /* Corresponds to pt-24 (assuming 1rem = 16px, 96px), adjust as needed */
@@ -64,7 +63,7 @@
         /* Sections that are part of the main scrolling content */
         .main-content-section {
             display: block;
-            /* Visible by default */
+            /* Visible by default, JS will manage visibility when #real-estate is active */
         }
 
         /* The real estate section is special and hidden by default */
@@ -185,21 +184,23 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-center space-x-8">
-                        <a href="home"
+                        <a href="#home"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Home</a>
-                        <a href="about"
+                        <a href="#about"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">About Me</a>
-                        <a href="skills"
+                        <a href="#skills"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">My Skills</a>
-                        <a href="projects"
-                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">My Projects</a>
-                        <a href="education"
+                        <a href="#projects"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">My
+                            Projects</a>
+                        <a href="#education"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Education</a>
-                        <a href="experience"
+                        <a href="#experience"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Experience</a>
-                        <a href="real-estate" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Real estate
+                        <a href="#real-estate"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Real estate
                             properties</a>
-                        <a href="contact"
+                        <a href="#contact"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
                     </div>
                 </div>
@@ -215,21 +216,22 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900/95 backdrop-blur-md">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="home"
+                <a href="#home"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Home</a>
-                <a href="about"
+                <a href="#about"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">About</a>
-                <a href="skills"
+                <a href="#skills"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Skills</a>
-                <a href="projects"
+                <a href="#projects"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Projects</a>
-                <a href="education"
+                <a href="#education"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Education</a>
-                <a href="experience"
+                <a href="#experience"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Experience</a>
-                <a href="real-estate" class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Real
+                <a href="#real-estate"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Real
                     estate properties</a>
-                <a href="contact"
+                <a href="#contact"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Contact</a>
             </div>
         </div>
@@ -357,7 +359,8 @@
                                 class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">SASS</span>
                             <span
                                 class="skill-badge px-3 py-1 bg-blue-900/50 text-blue-300 rounded-full text-sm">Responsive
-                                Design</span></div>
+                                Design</span>
+                        </div>
                     </div>
                     <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
                         <h3 class="text-xl font-semibold mb-4 text-emerald-400 flex items-center"><i
@@ -804,8 +807,6 @@
             </div>
         </section>
     </div>
-
-
     <footer class="bg-slate-950 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -840,12 +841,13 @@
 
             const mainContentSections = document.querySelectorAll('.main-content-section');
             const realEstateSection = document.getElementById('real-estate');
-            const desktopNavLinks = document.querySelectorAll('nav .nav-link');
-            const mobileNavItems = document.querySelectorAll('#mobile-menu .mobile-nav-item');
+            const desktopNavLinks = document.querySelectorAll('nav .nav-link'); // Targets desktop links specifically
+            const mobileNavItems = document.querySelectorAll('#mobile-menu .mobile-nav-item'); // Targets mobile links specifically
             const heroContactButton = document.getElementById('hero-contact-button');
 
+
             const navbar = document.querySelector('nav');
-            const navbarHeight = navbar ? navbar.offsetHeight : 64; // Fallback if nav not found
+            const navbarHeight = navbar ? navbar.offsetHeight : 64;
 
             function showView(targetId) { // targetId includes '#'
                 if (targetId === '#real-estate') {
@@ -859,11 +861,10 @@
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         let scrollToPosition = targetElement.offsetTop - navbarHeight;
-                        // Ensure positive scroll position
-                        scrollToPosition = Math.max(0, scrollToPosition);
+                        scrollToPosition = Math.max(0, scrollToPosition); // Ensure not negative
                         window.scrollTo({ top: scrollToPosition, behavior: 'smooth' });
-                    } else if (targetId === '#home') { // Failsafe for home
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else if (targetId === '#home') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' }); // Fallback for home
                     }
                 }
                 updateActiveNavLinks(targetId);
@@ -877,11 +878,11 @@
                     }
                 });
                 mobileNavItems.forEach(link => {
-                    link.classList.remove('text-white', 'bg-slate-700'); // Reset style
+                    link.classList.remove('text-white', 'bg-slate-700');
                     link.classList.add('text-gray-300');
                     if (link.getAttribute('href') === activeSectionId) {
                         link.classList.remove('text-gray-300');
-                        link.classList.add('text-white', 'bg-slate-700'); // Active style
+                        link.classList.add('text-white', 'bg-slate-700');
                     }
                 });
             }
@@ -904,23 +905,28 @@
 
             desktopNavLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
             mobileNavItems.forEach(link => link.addEventListener('click', handleNavLinkClick));
-            if (heroContactButton) {
+            if (heroContactButton) { // Make hero contact button also trigger navigation
                 heroContactButton.addEventListener('click', handleNavLinkClick);
             }
 
 
             function initialLoad() {
                 let targetId = window.location.hash;
+                // Validate if the element for the hash exists, otherwise default to #home
                 if (!targetId || !document.querySelector(targetId)) {
-                    targetId = '#home';
+                    targetId = '#home'; // Default section
                 }
-                showView(targetId); // This will also call updateActiveNavLinks
-                // Ensure URL hash is correct if defaulted, without adding to history for initial load
-                if (window.location.hash !== targetId) {
+
+                showView(targetId);
+
+                // Ensure URL hash is correct if defaulted and it wasn't an empty hash initially
+                if (window.location.hash !== targetId && targetId === '#home' && window.location.hash === '') {
+                    // No need to push state if it's already effectively home
+                } else if (window.location.hash !== targetId) {
                     if (history.replaceState) {
                         history.replaceState({ path: targetId }, '', targetId);
                     } else {
-                        window.location.hash = targetId; // Fallback for older browsers
+                        window.location.hash = targetId;
                     }
                 }
             }
@@ -933,7 +939,7 @@
                 showView(targetId);
             });
 
-            initialLoad();
+            initialLoad(); // Call on DOMContentLoaded
 
             // Download CV
             const downloadBtn = document.querySelector('.btn-download');
@@ -974,9 +980,13 @@
                 }
                 skillsScrollLeftBtn.addEventListener('click', () => skillsScrollContainer.scrollBy({ left: -320, behavior: 'smooth' }));
                 skillsScrollRightBtn.addEventListener('click', () => skillsScrollContainer.scrollBy({ left: 320, behavior: 'smooth' }));
+
+                // Run initially and on resize
                 toggleSkillScrollButtons();
                 window.addEventListener('resize', toggleSkillScrollButtons);
-                new MutationObserver(toggleSkillScrollButtons).observe(skillsScrollContainer, { childList: true, subtree: true, attributes: true });
+
+                // Observe changes in the container that might affect overflow
+                new MutationObserver(toggleSkillScrollButtons).observe(skillsScrollContainer, { childList: true, subtree: true, attributes: true, characterData: true });
             }
         });
     </script>
