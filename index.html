@@ -7,7 +7,7 @@
     <meta name="description"
         content="Portfolio of Kaka Prince Chiemezuo - Frontend Developer, AI Engineer, and Real Estate Consultant. Explore projects, skills, and a dedicated real estate properties section.">
     <meta name="keywords"
-        content="Frontend Developer, AI Engineer, Web Development, Machine Learning, Portfolio, Real Estate, Embedded Properties, Single Page Application, Blog">
+        content="Frontend Developer, AI Engineer, Web Development, Machine Learning, Portfolio, Real Estate, Embedded Properties, Single Page Application, Blog, Foundation">
     <title>Kaka Prince Chiemezuo | Developer, Real Estate & Blog</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -140,7 +140,7 @@
             position: absolute;
             background-color: #1e293b;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
             border-radius: 0.5rem;
             padding-top: 0.5rem;
@@ -163,7 +163,7 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        
+
         /* Mobile menu dropdown indicator */
         .mobile-dropdown-trigger::after {
             content: ' ▼';
@@ -218,6 +218,7 @@
         .projects-slider-container {
             position: relative;
         }
+
         .projects-slider {
             display: flex;
             overflow-x: auto;
@@ -226,9 +227,11 @@
             scrollbar-width: none;
             gap: 1.5rem;
         }
+
         .projects-slider::-webkit-scrollbar {
             display: none;
         }
+
         .slider-button {
             position: absolute;
             top: 50%;
@@ -246,21 +249,24 @@
             z-index: 10;
             transition: background-color 0.3s;
         }
+
         .slider-button:hover {
             background-color: rgba(29, 39, 53, 0.9);
         }
+
         .slider-button.prev {
             left: -1.25rem;
         }
+
         .slider-button.next {
             right: -1.25rem;
         }
+
         @media (max-width: 640px) {
             .slider-button {
                 display: none;
             }
         }
-
     </style>
 </head>
 
@@ -275,10 +281,11 @@
                     <div class="ml-10 flex items-center space-x-8">
                         <a href="#home"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Home</a>
-                        
+
                         <div class="dropdown">
-                             <a href="#about"
-                                class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">About Me</a>
+                            <a href="#about"
+                                class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">About
+                                Me</a>
                             <div class="dropdown-content">
                                 <a href="#skills" class="nav-link-dropdown">My Skills</a>
                                 <a href="#projects" class="nav-link-dropdown">My Projects</a>
@@ -287,10 +294,13 @@
                             </div>
                         </div>
 
-                        <a href="#real-estate"
-                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Real estate</a>
+                        <a href="https://www.naijaland.site"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Real
+                            estate</a>
+                        <a href="https://www.smartprince.site/foundation/"
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Foundation</a>
                         <a href="#blog"
-                           class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Blog</a>
+                            class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Blog</a>
                         <a href="#contact"
                             class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
                     </div>
@@ -309,15 +319,18 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Home</a>
-                
+
                 <div>
                     <a href="#about" id="mobile-about-link"
-                        class="mobile-nav-item mobile-dropdown-trigger block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">About Me</a>
+                        class="mobile-nav-item mobile-dropdown-trigger block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">About
+                        Me</a>
                     <div id="mobile-dropdown-content" class="pl-4 pt-1 hidden">
                         <a href="#skills"
-                            class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-400 hover:text-white">My Skills</a>
+                            class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-400 hover:text-white">My
+                            Skills</a>
                         <a href="#projects"
-                            class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-400 hover:text-white">My Projects</a>
+                            class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-400 hover:text-white">My
+                            Projects</a>
                         <a href="#education"
                             class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-400 hover:text-white">Education</a>
                         <a href="#experience"
@@ -325,8 +338,11 @@
                     </div>
                 </div>
 
-                <a href="#real-estate"
-                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Real estate</a>
+                <a href="https://www.naijaland.site"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Real
+                    estate</a>
+                <a href="https://www.smartprince.site/foundation/"
+                    class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Foundation</a>
                 <a href="#blog"
                     class="mobile-nav-item block px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Blog</a>
                 <a href="#contact"
@@ -580,8 +596,9 @@
                         </div>
                         <div class="project-card p-6 rounded-xl border border-slate-700">
                             <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-semibold text-emerald-400">AI Property Price Estimator</h3> <span
-                                    class="px-2 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-xs">AI / Data
+                                <h3 class="text-xl font-semibold text-emerald-400">AI Property Price Estimator</h3>
+                                <span class="px-2 py-1 bg-emerald-900/50 text-emerald-300 rounded-full text-xs">AI /
+                                    Data
                                     Science</span>
                             </div>
                             <div class="flex flex-wrap gap-2 mb-4"> <span
@@ -603,7 +620,8 @@
                             </div>
                             <div class="mb-6">
                                 <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
-                                <p class="text-gray-400 text-sm">Trained and deployed regression models; used lightweight
+                                <p class="text-gray-400 text-sm">Trained and deployed regression models; used
+                                    lightweight
                                     frameworks for non-technical users; added database support for saving searches.</p>
                             </div> <a href="https://real-price1.web.app" target="_blank"
                                 class="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm transition-colors">
@@ -642,7 +660,8 @@
                         </div>
                         <div class="project-card p-6 rounded-xl border border-slate-700">
                             <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-semibold text-amber-400">NaijaLand – PropTech Platform</h3> <span
+                                <h3 class="text-xl font-semibold text-amber-400">NaijaLand – PropTech Platform</h3>
+                                <span
                                     class="px-2 py-1 bg-amber-900/50 text-amber-300 rounded-full text-xs">Fullstack</span>
                             </div>
                             <div class="flex flex-wrap gap-2 mb-4"> <span
@@ -665,7 +684,8 @@
                             <div class="mb-6">
                                 <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
                                 <p class="text-gray-400 text-sm">Handled secure property purchases via Firestore
-                                    transactions; implemented modals, land calculator, and user-uploaded receipts; enabled
+                                    transactions; implemented modals, land calculator, and user-uploaded receipts;
+                                    enabled
                                     offline capabilities with PWA.</p>
                             </div> <a href="https://www.naijaland.site" target="_blank"
                                 class="inline-block px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
@@ -829,14 +849,13 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
                 <h2 class="text-3xl font-bold mb-8 text-center gradient-text">My Blog</h2>
                 <div class="w-full h-[calc(100vh-10rem)] sm:h-[calc(100vh-8rem)] overflow-hidden rounded-lg shadow-xl">
-                    <iframe src="https://kakaprincec.blogspot.com" class="w-full h-full"
-                        style="border:none;" title="My Blog" loading="lazy">
+                    <iframe src="https://kakaprincec.blogspot.com" class="w-full h-full" style="border:none;"
+                        title="My Blog" loading="lazy">
                     </iframe>
                 </div>
                 <p class="text-center text-gray-400 mt-4 text-sm">
                     Note: This is an embedded page. For the full experience or if you encounter any issues, please
-                    <a href="https://kakaprincec.blogspot.com" target="_blank"
-                        class="text-blue-400 hover:underline">
+                    <a href="https://kakaprincec.blogspot.com" target="_blank" class="text-blue-400 hover:underline">
                         visit the blog directly
                     </a>.
                 </p>
@@ -857,7 +876,8 @@
                             <div class="flex items-center">
                                 <div
                                     class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-blue-400"></i></div>
+                                    <i class="fas fa-envelope text-blue-400"></i>
+                                </div>
                                 <div>
                                     <h4 class="text-gray-400 text-sm">Email</h4> <a
                                         href="mailto:smartprincenet@gmail.com"
@@ -867,7 +887,8 @@
                             <div class="flex items-center">
                                 <div
                                     class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
-                                    <i class="fas fa-phone text-blue-400"></i></div>
+                                    <i class="fas fa-phone text-blue-400"></i>
+                                </div>
                                 <div>
                                     <h4 class="text-gray-400 text-sm">Phone</h4> <a href="tel:+2348160952082"
                                         class="text-white hover:text-blue-400 transition-colors">+234 8160 952082</a>
@@ -876,7 +897,8 @@
                             <div class="flex items-center">
                                 <div
                                     class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center mr-4">
-                                    <i class="fas fa-map-marker-alt text-blue-400"></i></div>
+                                    <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                </div>
                                 <div>
                                     <h4 class="text-gray-400 text-sm">Location</h4>
                                     <p class="text-white">Nigeria</p>
@@ -966,7 +988,7 @@
             const mainContentSections = document.querySelectorAll('.main-content-section');
             const realEstateSection = document.getElementById('real-estate');
             const blogSection = document.getElementById('blog');
-            
+
             // Query all nav links including those in the dropdown for event handling
             const allNavLinks = document.querySelectorAll('.nav-link, .nav-link-dropdown');
             const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
@@ -1013,7 +1035,7 @@
                     const linkHref = link.getAttribute('href');
                     const dropdownLinks = link.parentElement.querySelectorAll('.dropdown-content a');
                     let isParentOfActive = false;
-                    
+
                     dropdownLinks.forEach(dLink => {
                         if (dLink.getAttribute('href') === activeSectionId) {
                             isParentOfActive = true;
@@ -1029,7 +1051,7 @@
                 mobileNavItems.forEach(link => {
                     link.classList.remove('text-white', 'bg-slate-700');
                     link.classList.add('text-gray-300');
-                    if(link.parentElement.id === 'mobile-dropdown-content') {
+                    if (link.parentElement.id === 'mobile-dropdown-content') {
                         link.classList.add('text-gray-400');
                     }
                     if (link.getAttribute('href') === activeSectionId) {
@@ -1050,14 +1072,14 @@
                         window.location.hash = targetId;
                     }
                     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                         // Don't close mobile menu if dropdown is clicked, only on item click
+                        // Don't close mobile menu if dropdown is clicked, only on item click
                         if (!this.classList.contains('mobile-dropdown-trigger')) {
                             mobileMenu.classList.add('hidden');
                         }
                     }
                 }
             }
-            
+
             allNavLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
             mobileNavItems.forEach(link => link.addEventListener('click', handleNavLinkClick));
             if (heroContactButton) {
@@ -1132,7 +1154,7 @@
                 window.addEventListener('resize', toggleSkillScrollButtons);
                 new MutationObserver(toggleSkillScrollButtons).observe(skillsScrollContainer, { childList: true, subtree: true, attributes: true, characterData: true });
             }
-            
+
             const projectSlider = document.getElementById('projects-slider');
             const prevButton = document.getElementById('project-slider-prev');
             const nextButton = document.getElementById('project-slider-next');
@@ -1142,7 +1164,7 @@
                     const firstCard = projectSlider.querySelector('.project-card');
                     return firstCard ? firstCard.offsetWidth + 24 : 300;
                 };
-                
+
                 prevButton.addEventListener('click', () => {
                     projectSlider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
                 });
@@ -1151,16 +1173,16 @@
                     projectSlider.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
                 });
             }
-            
+
             // --- New Mobile Dropdown Logic ---
             const mobileAboutLink = document.getElementById('mobile-about-link');
             const mobileDropdownContent = document.getElementById('mobile-dropdown-content');
 
-            if(mobileAboutLink && mobileDropdownContent) {
+            if (mobileAboutLink && mobileDropdownContent) {
                 mobileAboutLink.addEventListener('click', (event) => {
                     // We only want to toggle the dropdown, not scroll the page yet.
                     // The main navigation handler will do the scrolling.
-                    event.preventDefault(); 
+                    event.preventDefault();
                     mobileDropdownContent.classList.toggle('hidden');
                 });
             }
