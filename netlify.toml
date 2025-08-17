@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/predictbet/premier-league/*"
+  to = "https://match-prediction-4qe7.onrender.com/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/predictbet/dutch-league/*"
+  to = "https://dutch-league.onrender.com/:splat"
+  status = 200
+  
