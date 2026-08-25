@@ -4,7 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer - Kaka Foundation</title>
+    <title>Volunteer - KAKA Humanitarian Foundation</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Volunteer - KAKA Humanitarian Foundation">
+    <meta property="og:description" content="Join the KAKA Humanitarian Foundation volunteer team and help transform lives across Nigeria.">
+    <meta property="og:image" content="https://kakafoundation.com.ng/images/pexels-kwakugriffn-14554003.jpg">
+    <meta property="og:url" content="https://kakafoundation.com.ng/Volunteer/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://kakafoundation.com.ng/images/pexels-kwakugriffn-14554003.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -16,14 +29,41 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+
+        /* Logo styling */
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FBBF24;
+        }
+
+        @media (min-width: 640px) {
+            .logo-text {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-slate-900 text-slate-200">
 
     <header class="bg-slate-800 shadow-lg">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <h1 class="text-2xl font-bold text-blue-400">Kaka Foundation</h1>
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo Section with Image -->
+            <a href="../index.html" class="flex items-center gap-3">
+                <img src="../images/KAKA_logo.png" alt="KAKA Humanitarian Foundation Logo" 
+                     class="h-10 w-auto md:h-12 object-contain">
+                <span class="logo-text hidden sm:inline">KAKA Humanitarian Foundation</span>
+            </a>
+            <a href="../index.html#home"
+                class="px-4 py-2 rounded-md text-sm font-medium text-slate-300 hover:text-blue-400 hover:bg-slate-700 transition">Back
+                to Main Site</a>
         </nav>
     </header>
 
@@ -33,7 +73,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-blue-400 mb-4">Join Our Team</h2>
                 <div class="w-24 h-1 bg-emerald-500 mx-auto"></div>
                 <p class="text-xl mt-6 max-w-3xl mx-auto text-slate-300">
-                    Become a part of the Kaka Foundation family. By volunteering, you help us bring hope and essential
+                    Become a part of the KAKA Humanitarian Foundation family. By volunteering, you help us bring hope and essential
                     services to those in need. Fill out the form below to get started.
                 </p>
             </div>
@@ -94,33 +134,48 @@
         const submitButton = document.getElementById('submit-button');
         const formMessage = document.getElementById('form-message');
 
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbw-tfrPRF_FskmZIexG4qHqcee7hUKTS76Q1pwEyGS5jf9fC7Tu3kEb_V5qd9vMjkyA/exec';
+        // IMPORTANT: Paste your Centralized Apps Script URL here
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbzjW5wALsGshaUSixGzIJf_1Am_lf7riXg66gadGNZWjt1elAq61rPWXdoP6uoy2rozXg/exec';
 
         volunteerForm.addEventListener('submit', function (e) {
             e.preventDefault();
             submitButton.disabled = true;
             submitButton.textContent = 'Submitting...';
 
-            fetch(webAppUrl, { method: 'POST', body: new FormData(volunteerForm) })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.result === 'success') {
-                        formMessage.textContent = 'Thank you! Your application has been received.';
-                        formMessage.style.color = '#10B981'; // Success green
-                        volunteerForm.reset();
-                    } else {
-                        throw new Error(data.error || 'An unknown error occurred.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error submitting form:', error);
-                    formMessage.textContent = 'An error occurred. Please try again later.';
-                    formMessage.style.color = '#EF4444'; // Error red
-                })
-                .finally(() => {
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Submit Application';
-                });
+            // Package the data as JSON, including the formType identifier
+            const formData = {
+                formType: 'volunteer',
+                fullName: document.getElementById('full-name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone-number').value,
+                location: document.getElementById('location').value,
+                ageRange: document.getElementById('age-range').value
+            };
+
+            fetch(webAppUrl, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(formData) 
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    formMessage.textContent = 'Thank you! Your application has been received.';
+                    formMessage.style.color = '#10B981'; // Success green
+                    volunteerForm.reset();
+                } else {
+                    throw new Error(data.error || 'An unknown error occurred.');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                formMessage.textContent = 'An error occurred. Please check your connection and try again.';
+                formMessage.style.color = '#EF4444'; // Error red
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Application';
+            });
         });
     </script>
 </body>
