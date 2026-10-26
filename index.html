@@ -86,6 +86,7 @@
             transition: all 0.3s ease;
             background: linear-gradient(145deg, #1e293b, #0f172a);
             flex: 0 0 100%;
+            scroll-snap-align: start;
         }
 
         @media (min-width: 768px) {
@@ -226,6 +227,8 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             gap: 1.5rem;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 1rem;
         }
 
         .projects-slider::-webkit-scrollbar {
@@ -265,6 +268,138 @@
         @media (max-width: 640px) {
             .slider-button {
                 display: none;
+            }
+        }
+
+        /* =========================================================
+           MOBILE-FRIENDLINESS FIXES
+           ========================================================= */
+
+        /* 1) Stop accidental sideways scrolling on phones */
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        img,
+        iframe,
+        svg,
+        video {
+            max-width: 100%;
+        }
+
+        /* 2) Mobile menu becomes a proper dropdown below the fixed bar */
+        #mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: calc(100vh - 4rem);
+            max-height: calc(100dvh - 4rem);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border-top: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        /* 3) Comfortable tap targets inside the mobile menu */
+        #mobile-menu .mobile-nav-item {
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+        }
+
+        /* 4) Long e-mail addresses / links wrap instead of forcing overflow */
+        a[href^="mailto:"],
+        a[href^="tel:"] {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        /* 5) Embedded pages (Real Estate / Blog) must clear the fixed navbar */
+        #real-estate,
+        #blog {
+            padding-top: 5rem;
+        }
+
+        /* 6) Phone-specific tuning */
+        @media (max-width: 767px) {
+
+            /* Less dead space between sections */
+            .section {
+                padding-top: 4.5rem;
+                padding-bottom: 3.5rem;
+            }
+
+            #home.section {
+                padding-top: 5.5rem;
+                min-height: 100svh;
+            }
+
+            .section .pt-16 {
+                padding-top: 0.5rem;
+            }
+
+            #real-estate,
+            #blog {
+                padding-top: 4.5rem;
+            }
+
+            /* Let the education timeline scroll with the page
+               instead of inside a small 500px box */
+            #education .max-h-\[500px\] {
+                max-height: none;
+                overflow-y: visible;
+                padding-right: 0;
+            }
+
+            /* Embedded iframes keep a sane height on small screens */
+            #real-estate iframe,
+            #blog iframe {
+                height: calc(100vh - 12rem);
+                height: calc(100dvh - 12rem);
+                min-height: 380px;
+            }
+
+            /* Slider arrows no longer poke outside the container */
+            .slider-button.prev {
+                left: -0.25rem;
+            }
+
+            .slider-button.next {
+                right: -0.25rem;
+            }
+
+            /* Contact form a bit tighter on narrow screens */
+            #contact-form-element {
+                padding: 1.25rem;
+            }
+
+            /* Experience rows: let long titles + dates wrap */
+            #experience .flex.justify-between {
+                flex-wrap: wrap;
+                gap: 0.25rem 0.75rem;
+            }
+        }
+
+        /* 7) Skill / project cards sized for narrow phones */
+        @media (max-width: 640px) {
+            #skillsScroll > div {
+                min-width: 82vw;
+                padding: 1.25rem;
+                scroll-snap-align: start;
+            }
+
+            .projects-slider .project-card {
+                padding: 1.25rem;
+                flex: 0 0 85vw; /* This forces it to be smaller than the screen, revealing the next card */
+            }
+
+            .project-card > .justify-between {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -456,7 +591,7 @@
                     class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-slate-700 hover:bg-slate-600 text-white p-2 rounded-full z-10 shadow-lg hidden sm:block"><i
                         class="fas fa-chevron-right"></i></button>
                 <div id="skillsScroll"
-                    class="flex space-x-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-700 scroll-smooth">
+                    class="flex space-x-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-slate-700 scroll-smooth" style="scroll-snap-type: x mandatory;">
                     <div class="min-w-[300px] bg-slate-800 p-6 rounded-xl shadow-lg">
                         <h3 class="text-xl font-semibold mb-4 text-blue-400 flex items-center"><i
                                 class="fas fa-laptop-code mr-2"></i> Frontend Development</h3>
@@ -563,9 +698,44 @@
 
         <section id="projects" class="main-content-section section bg-slate-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-                <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Featured Projects</h2>
+                <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Featured Projects</h2>
+                
+                <!-- NEW: Mobile Swipe Hint -->
+                <div class="flex justify-center md:hidden mb-6">
+                    <span class="text-xs text-gray-400 border border-slate-700 bg-slate-900/50 px-3 py-1.5 rounded-full animate-pulse shadow-sm">
+                        <i class="fas fa-hand-pointer mr-2"></i>Swipe left to see more
+                    </span>
+                </div>
+
                 <div class="projects-slider-container">
                     <div id="projects-slider" class="projects-slider">
+                        <div class="project-card p-6 rounded-xl border border-slate-700">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-semibold text-blue-400">WorkMan Mobile App</h3>
+                                <span class="px-2 py-1 bg-blue-900/50 text-blue-300 rounded-full text-xs">Fullstack / Mobile</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i class="fab fa-react mr-1 text-blue-400"></i> Next.js</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i class="fab fa-js mr-1 text-yellow-300"></i> TypeScript</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i class="fas fa-mobile-alt mr-1 text-purple-400"></i> Capacitor</span>
+                                <span class="px-2 py-1 bg-slate-700 rounded-full text-xs flex items-center"><i class="fas fa-fire mr-1 text-red-400"></i> Firebase</span>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="font-medium text-gray-300 mb-2">Key Features:</h4>
+                                <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                    <li>Marketplace connecting customers with artisans</li>
+                                    <li>Skill registration constraints management</li>
+                                    <li>Platform wallet balance handling</li>
+                                </ul>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="font-medium text-gray-300 mb-2">What I Solved:</h4>
+                                <p class="text-gray-400 text-sm">Developed a cross-platform mobile app managing artisan verification, complex user flows, and financial balances systematically.</p>
+                            </div>
+                            <a href="https://workman.name.ng" target="_blank" class="inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors">
+                                View Project <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
                         <div class="project-card p-6 rounded-xl border border-slate-700">
                             <div class="flex justify-between items-start mb-4">
                                 <h3 class="text-xl font-semibold text-blue-400">Prompt-to-Song Generator</h3> <span
@@ -722,6 +892,17 @@
                         </div>
                     </div>
                     <div class="timeline-item mb-8 pl-8 relative">
+                        <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-300">
+                        </div>
+                        <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                                <h3 class="text-xl font-semibold text-blue-400">W.A.S.C.</h3> <span
+                                    class="text-sm text-gray-400">2014</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">St Augustine Secondary School Obizi</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-8 pl-8 relative">
                         <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-amber-500 border-4 border-amber-300">
                         </div>
                         <div class="bg-slate-800 p-6 rounded-xl shadow-lg">
@@ -740,6 +921,9 @@
                                 <li><strong>2020:</strong> Certificate in Personal Money Management by YALI Network</li>
                                 <li><strong>2020:</strong> Certificate of Service, Directorate of Entrepreneur by NAU
                                     SUG</li>
+                                <li><strong>2024:</strong> Certificate in SEO Optimization by SID 1 Million Anambra Digital Tribe</li>
+                                <li><strong>2024:</strong> Certificate in Basic No-Code Web Design by SID 1 Million Anambra Digital Tribe</li>
+                                <li><strong>2025:</strong> Certified Sustainable Development Goals (SDGs) Volunteer, NYSC Kogi State (Batch C)</li>
                             </ul>
                         </div>
                     </div>
@@ -752,6 +936,28 @@
                 <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Experience & Leadership</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-6">
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Founder & CEO</h4> <span
+                                    class="text-sm text-gray-400">2021 – Present</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Prince Kaka Global Resources</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Leading operations in real estate, technology solutions, and AI innovation.</li>
+                                <li>Designed and developed mobile applications: NaijaLand, WorkMan, and BrainBox.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">SDG Governor</h4> <span
+                                    class="text-sm text-gray-400">2025 – 2026</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">NYSC Camp, Kogi State</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Led SDG advocacy and awareness campaigns aligned with UN goals.</li>
+                                <li>Collaborated with stakeholders for social interventions.</li>
+                            </ul>
+                        </div>
                         <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
                             <div class="flex justify-between items-start mb-2">
                                 <h4 class="text-lg font-medium text-white">Chairman</h4> <span
@@ -783,8 +989,50 @@
                                 <li>Coordinated entrepreneurship programs and student skill acquisition.</li>
                             </ul>
                         </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Classroom Teacher</h4> <span
+                                    class="text-sm text-gray-400">2014 – 2015</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Secondary School</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Taught secondary school students in Mathematics and physics subjects.</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="space-y-6">
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Founder & Exec Chairman</h4> <span
+                                    class="text-sm text-gray-400">2026 – Present</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Kaka Humanitarian Foundation</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Leading humanitarian and educational outreach programs.</li>
+                                <li>Focused on youth empowerment and community development.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Real Estate Consultant</h4> <span
+                                    class="text-sm text-gray-400">2024 – Present</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Apex Assets Limited</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Advised clients on land and property investments.</li>
+                                <li>Facilitated property sales and market trend analysis.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-medium text-white">Electronics Business Manager</h4> <span
+                                    class="text-sm text-gray-400">NYSC Experience</span>
+                            </div>
+                            <p class="text-gray-300 mb-2">Electronics & Electrical Business</p>
+                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
+                                <li>Managed daily operations and coordinated electrical repairs.</li>
+                            </ul>
+                        </div>
                         <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
                             <div class="flex justify-between items-start mb-2">
                                 <h4 class="text-lg font-medium text-white">Financial Secretary</h4> <span
@@ -813,16 +1061,6 @@
                             <p class="text-gray-300 mb-2">St. Benedict Parish Church, Obokwu</p>
                             <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
                                 <li>Led fundraising and logistics for annual harvest event.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-xl shadow-lg">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-lg font-medium text-white">Data Entry & Research</h4> <span
-                                    class="text-sm text-gray-400">2024 – Present</span>
-                            </div>
-                            <p class="text-gray-300 mb-2">Apex Assets Limited</p>
-                            <ul class="list-disc list-inside text-gray-400 text-sm space-y-1">
-                                <li>Manages property data and market trend analysis.</li>
                             </ul>
                         </div>
                     </div>
@@ -1127,7 +1365,7 @@
                 downloadBtn.addEventListener('click', function () {
                     alert('Preparing CV for download...');
                     const link = document.createElement('a');
-                    link.href = 'kaka CV 29.5.2025.pdf';
+                    link.href = 'kaka CV updated 24102026.pdf';
                     link.download = 'Kaka_Prince_Chiemezuo_CV.pdf';
                     document.body.appendChild(link);
                     link.click();

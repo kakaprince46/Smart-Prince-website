@@ -175,25 +175,32 @@
             <div class="container">
                 <div class="cta-form-wrapper" style="max-width: 600px; margin: 0 auto; text-align: left; background: #fff; padding: 2rem; border-radius: 8px; color: #333;">
                     <h3 style="margin-bottom: 1rem; text-align: center; color: var(--primary-dark);">Request a Consultation</h3>
-                    <form>
+                    
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="c664b6e7-8b46-4880-bd73-0f3dc3a3ea31">
+                        
                         <div style="margin-bottom: 1rem;">
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Name</label>
-                            <input type="text" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;" required>
+                            <input type="text" name="name" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;" required>
                         </div>
+                        
                         <div style="margin-bottom: 1rem;">
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Email</label>
-                            <input type="email" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;" required>
+                            <input type="email" name="email" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;" required>
                         </div>
+                        
                         <div style="margin-bottom: 1rem;">
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Project Details</label>
-                            <textarea rows="4" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;" required></textarea>
+                            <textarea name="message" rows="4" style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;" required></textarea>
                         </div>
+                        
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
                     </form>
                 </div>
             </div>
         </section>
-    </main>
 
     <!-- FOOTER -->
     <footer class="footer">
